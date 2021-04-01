@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Submissions Recorded in Datastore</h2>
+    <h4>Upload page can be found <a href="{{ url_for('index') }}">here</a></h3>
+<style>
+#vtsubmissions {
+    text-align: left;
+    font-family: "Roboto", sans-serif;
+    font-size: small;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+  }
+#vtsubmissions td, #vtsubmissions th {
+    font-size: 12px;
+    border: 1px solid #000000;
+    padding: 20px;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    word-wrap: break-word;
+  }
+#vtsubmissions tr:nth-child(even){background-color: #f2f2f2;}
+
+#vtsubmissions tr:hover {background-color: #ddd;}
+</style>
+    <table id="vtsubmissions">
+        <tr>
+            <th>Analysis ID</th>
+            <th>Filename</th>
+            <th>Timestamp</th>
+        </tr>
+        {% for record in vtsubs %}
+        <tr>
+            <td>{{ record.analysis_id }}</td>
+            <td>{{ record.file_name }}</td>
+            <td>{{ record.timestamp }}</td>
+        </tr>
+        {% endfor %}
+
+{% endblock %}
